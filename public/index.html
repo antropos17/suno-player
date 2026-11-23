@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Suno Player</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<div class="app">
+  <aside class="library">
+    <header class="brand"><span class="brand-icon" aria-hidden="true">♫</span><span>Suno<span class="brand-light"> / player</span></span></header>
+    <div class="library-heading"><h1>Моя музыка</h1><span id="count">0</span></div>
+    <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Название, стиль или текст" aria-label="Поиск песен"></label>
+    <button id="import" class="import">＋ Добавить песни</button>
+    <input id="files" type="file" accept=".mp3,.wav,.ogg,.m4a,.aac,.flac,.webm" multiple hidden>
+    <div id="songs" class="songs" aria-label="Библиотека песен"></div>
+    <footer class="library-footer"><span class="local-dot"></span> Локальная библиотека <span>X:</span></footer>
+  </aside>
+  <main>
+    <div class="topline"><span>Твоя музыка. Твоё пространство.</span><span id="status" role="status" aria-live="polite">Всё на этом компьютере</span></div>
+    <section id="welcome" class="welcome"><div class="record" aria-hidden="true"><span>♫</span></div><h2>Начнём с твоей песни</h2><p>Перетащи аудиофайлы сюда<br>или добавь их в библиотеку.</p><button id="first-import" class="primary">Выбрать песни</button><small>MP3, WAV, FLAC, M4A, OGG, AAC, WebM · до 200 МБ</small></section>
+    <section id="editor" hidden>
+      <div class="song-heading"><div class="cover" aria-hidden="true"><div class="cover-lines"></div><span>♫</span></div><div class="song-info"><p class="muted">Из моей библиотеки</p><label for="title" class="sr-only">Название песни</label><input id="title" class="title" maxlength="300" placeholder="Название песни"><p id="file-info" class="muted"></p></div><button id="play-main" class="play-main" aria-label="Воспроизвести">▶</button></div>
+      <div class="editor-bar"><div class="tabs" role="tablist" aria-label="Сведения о песне"><button id="lyrics-tab" role="tab" aria-selected="true" aria-controls="lyrics-panel">Текст песни</button><button id="styles-tab" role="tab" aria-selected="false" aria-controls="styles-panel" tabindex="-1">Стили</button></div><button id="save" class="save" disabled>Сохранено</button></div>
+      <div id="lyrics-panel" role="tabpanel" aria-labelledby="lyrics-tab"><label for="lyrics" class="sr-only">Текст песни</label><textarea id="lyrics" maxlength="100000" placeholder="Добавь текст песни…&#10;&#10;Куплеты, припевы, заметки — всё будет рядом с музыкой."></textarea></div>
+      <div id="styles-panel" role="tabpanel" aria-labelledby="styles-tab" hidden><label for="styles">Как звучит эта песня?</label><p class="muted">Укажи жанры, настроение, инструменты или вставь Style из Suno.</p><textarea id="styles" maxlength="3000" placeholder="indie pop, dreamy vocals, warm synths…"></textarea><div id="style-tags" class="style-tags"></div></div>
+    </section>
+  </main>
+  <section class="player" aria-label="Управление воспроизведением"><div class="now"><div class="mini-cover" aria-hidden="true">♫</div><div><strong id="now-title">Ничего не играет</strong><span id="now-style">Выбери песню в библиотеке</span></div></div><div class="transport"><div class="controls"><button id="shuffle" aria-label="Случайный порядок" aria-pressed="false">⤨</button><button id="prev" aria-label="Предыдущая песня">⏮</button><button id="play" class="play" aria-label="Воспроизвести" disabled>▶</button><button id="next" aria-label="Следующая песня">⏭</button><button id="repeat" aria-label="Повторять песню" aria-pressed="false">↻</button></div><div class="timeline"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Позиция воспроизведения" disabled><span id="duration">0:00</span></div></div><label class="volume"><span aria-hidden="true">♪</span><input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Громкость"></label></section>
+</div>
+<div id="drop" hidden>Отпусти файлы, чтобы добавить песни</div><div id="error" role="alert" hidden></div><audio id="audio" preload="metadata"></audio>
+</body></html>
